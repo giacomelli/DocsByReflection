@@ -67,7 +67,7 @@ namespace DocsByReflection
         }
 
         /// <summary>
-        /// Provides the documentation comments for a specific member
+        /// Provides the documentation comments for a specific member.
         /// </summary>
         /// <param name="member">The MemberInfo (reflection data) or the member to find documentation for</param>
         /// <returns>The XML fragment describing the member</returns>
@@ -82,6 +82,25 @@ namespace DocsByReflection
             // First character [0] of member type is prefix character in the name in the XML
             return GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name);
         }
+
+		/// <summary>
+		/// Provides the documentation comments for a specific parameter.
+		/// </summary>
+		/// <param name="parameter">The ParameterInfo (reflection data) to find documentation for.</param>
+		/// <returns>The XML fragment describing the paramter.</returns>
+		[SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
+		public static XmlElement GetXmlFromParameter(ParameterInfo parameter)
+		{
+			if (parameter == null)
+			{
+				throw new ArgumentNullException("parameter");
+			}
+
+			var method = parameter.Member as MethodBase;
+			var memberDoc = method == null ? GetXmlFromMember(parameter.Member) : GetXmlFromMember(method);
+
+			return memberDoc.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, "param[@name='{0}']", parameter.Name)) as XmlElement;
+		}
 
         /// <summary>
         /// Provides the documentation comments for a specific type
@@ -230,6 +249,6 @@ namespace DocsByReflection
 				return String.Format(CultureInfo.InvariantCulture, "{0}.{1}", type.Namespace, type.Name);
 			}
 		}
-		#endregion
+		#endregion		
 	}
 }

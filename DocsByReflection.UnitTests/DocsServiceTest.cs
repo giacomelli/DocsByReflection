@@ -50,8 +50,8 @@ namespace DocsByReflection.UnitTests
 		[TestMethod]
 		public void GetXmlFromMember_MethodWithGenericParameter_XmlElement()
 		{
-			var propertyInfo = typeof(Stub).GetMethod("MethodWithGenericParameter");
-			var actual = DocsService.GetXmlFromMember(propertyInfo);
+			var method = typeof(Stub).GetMethod("MethodWithGenericParameter");
+			var actual = DocsService.GetXmlFromMember(method);
 			Assert.AreEqual("MethodWithGenericParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
 			Assert.AreEqual("Generic parameter.", actual.SelectSingleNode("param").InnerText.Trim());
 		}
@@ -75,5 +75,15 @@ namespace DocsByReflection.UnitTests
 		}
 		#endregion
 
+		#region GetXmlFromParameter
+		[TestMethod]
+		public void GetXmlFromParameter_Parameter_XmlElement()
+		{
+			var method = typeof(Stub).GetMethod("MethodWithGenericParameter");
+			var parameter = method.GetParameters()[0];
+			var actual = DocsService.GetXmlFromParameter(parameter);
+			Assert.AreEqual("Generic parameter.", actual.InnerText);
+		}
+		#endregion
 	}
 }
