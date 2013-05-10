@@ -42,9 +42,6 @@
     <Compile Include="DocsServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Stubs\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DocsByReflection\DocsByReflection.csproj">
       <Project>{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}</Project>
       <Name>DocsByReflection</Name>
