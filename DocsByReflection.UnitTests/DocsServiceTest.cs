@@ -2,17 +2,17 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Reflection;
 using DocsByReflection.UnitTests.Stubs;
 
 namespace DocsByReflection.UnitTests
 {
-	[TestClass]
+	[TestFixture]
 	public class DocsServiceTest
 	{
 		#region GetXmlFromMember for properties
-		[TestMethod]
+		[Test]
 		public void GetXmlFromMember_PropertyWithDoc_XmlElement()
 		{
 			var propertyInfo = typeof(Stub).GetProperty("PropertyWithDoc");
@@ -20,7 +20,7 @@ namespace DocsByReflection.UnitTests
 			Assert.AreEqual("Gets or sets PropertyWithDoc.", actual.SelectSingleNode("summary").InnerText.Trim());
 		}
 
-		[TestMethod]
+		[Test]
 		[ExpectedException(typeof(DocsByReflectionException))]
 		public void GetXmlFromMember_PropertyWithoutDoc_Null()
 		{
@@ -29,7 +29,7 @@ namespace DocsByReflection.UnitTests
 			Assert.IsNull(actual);
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetXmlFromMember_PropertyOnBaseClassWithDoc_XmlElement()
 		{
 			var propertyInfo = typeof(Stub).GetProperty("PropertyOnBaseClassWithDoc");
@@ -37,7 +37,7 @@ namespace DocsByReflection.UnitTests
 			Assert.AreEqual("Gets or sets PropertyOnBaseClassWithDoc.", actual.SelectSingleNode("summary").InnerText.Trim());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetXmlFromMember_PropertyGenericOnBaseClassWithDoc_XmlElement()
 		{
 			var propertyInfo = typeof(Stub).GetProperty("PropertyGenericOnBaseClassWithDoc");
@@ -47,7 +47,7 @@ namespace DocsByReflection.UnitTests
 		#endregion
 
 		#region GetXmlFromMember for methods
-		[TestMethod]
+		[Test]
 		public void GetXmlFromMember_MethodWithGenericParameter_XmlElement()
 		{
 			var method = typeof(Stub).GetMethod("MethodWithGenericParameter");
@@ -58,7 +58,7 @@ namespace DocsByReflection.UnitTests
 		#endregion
 
 		#region GetXmlFromType
-		[TestMethod]
+		[Test]
 		public void GetXmlFromType_Class_XmlElement()
 		{
 			var actual = DocsService.GetXmlFromType(typeof(Stub));
@@ -67,16 +67,16 @@ namespace DocsByReflection.UnitTests
 		#endregion
 
 		#region GetXmlFromAssembly
-		[TestMethod]
+		[Test]
 		public void GetXmlFromAssembly_Assembly_XmlElement()
 		{
 			var actual = DocsService.GetXmlFromAssembly(typeof(Stub).Assembly);
-			Assert.AreEqual("DocsByReflection.UnitTests", actual.SelectSingleNode("//name").InnerText);
+			Assert.AreEqual("DocsByReflection.UnitTests.Stubs", actual.SelectSingleNode("//name").InnerText);
 		}
 		#endregion
 
 		#region GetXmlFromParameter
-		[TestMethod]
+		[Test]
 		public void GetXmlFromParameter_Parameter_XmlElement()
 		{
 			var method = typeof(Stub).GetMethod("MethodWithGenericParameter");
