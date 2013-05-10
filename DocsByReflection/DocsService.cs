@@ -208,15 +208,22 @@ namespace DocsByReflection
 
             if (assemblyFilename.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
             {
+				var filePath = Path.ChangeExtension(assemblyFilename.Substring(prefix.Length), ".xml");
+
                 try
                 {
-					using(var streamReader = new StreamReader(Path.ChangeExtension(assemblyFilename.Substring(prefix.Length), ".xml")))
+					using(var streamReader = new StreamReader(filePath))
 					{
 						 XmlDocument xmlDocument = new XmlDocument();
 						xmlDocument.Load(streamReader);
 						return xmlDocument;
 					}                    
                 }
+				catch(DirectoryNotFoundException directoryException)
+				{
+					var msg = String.Format(CultureInfo.InvariantCulture, "Error trying to locate the XML documentation file on folder {0}.", filePath);
+					throw new DocsByReflectionException(msg, directoryException);
+				}
                 catch (FileNotFoundException exception)
                 {
                     throw new DocsByReflectionException("XML documentation not present (make sure it is turned on in project properties when building)", exception);
