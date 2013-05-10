@@ -208,7 +208,14 @@ namespace DocsByReflection
 
             if (assemblyFilename.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
             {
-				var filePath = Path.ChangeExtension(assemblyFilename.Substring(prefix.Length), ".xml");
+				var filePath = assemblyFilename.Substring(prefix.Length);;
+
+				if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
+				{
+					filePath = "/" + filePath;
+				}
+
+				filePath = Path.ChangeExtension(filePath, ".xml");
 
                 try
                 {
