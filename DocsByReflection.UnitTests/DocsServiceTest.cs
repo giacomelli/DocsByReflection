@@ -71,7 +71,7 @@ namespace DocsByReflection.UnitTests
 		public void GetXmlFromAssembly_Assembly_XmlElement()
 		{
 			var actual = DocsService.GetXmlFromAssembly(typeof(Stub).Assembly);
-			Assert.AreEqual("DocsByReflection.UnitTests.Stubs", actual.SelectSingleNode("//name").InnerText);
+			StringAssert.EndsWith("DocsByReflection.UnitTests.Stubs", actual.SelectSingleNode("//name").InnerText);
 		}
 		#endregion
 
