@@ -257,7 +257,11 @@ namespace DocsByReflection
 					type.Namespace, 
 					type.Name.Replace("`1", ""),
 					GetTypeFullNameForXmlDoc(type.GetGenericArguments().FirstOrDefault()));
-			}
+            }
+            else if (type.IsNested)
+            {
+                return String.Format(CultureInfo.InvariantCulture, "{0}.{1}.{2}", type.Namespace, type.DeclaringType.Name, type.Name);
+            }
 			else
 			{
 				return String.Format(CultureInfo.InvariantCulture, "{0}.{1}", type.Namespace, type.Name);
