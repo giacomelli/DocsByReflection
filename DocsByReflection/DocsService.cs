@@ -38,9 +38,10 @@ namespace DocsByReflection
         /// Provides the documentation comments for a specific method
         /// </summary>
         /// <param name="method">The MethodInfo (reflection data ) of the member to find documentation for</param>
+		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The XML fragment describing the method</returns>
 		[SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-		public static XmlElement GetXmlFromMember(MethodBase method)
+		public static XmlElement GetXmlFromMember(MethodBase method, bool throwError = true)
         {
 			if (method == null)
 			{
@@ -62,18 +63,19 @@ namespace DocsByReflection
 
             //AL: 15.04.2008 ==> BUG-FIX remove “()” if parametersString is empty
             if (parametersString.Length > 0)
-                return GetXmlFromName(method.DeclaringType, 'M', method.Name + "(" + parametersString + ")");
+                return GetXmlFromName(method.DeclaringType, 'M', method.Name + "(" + parametersString + ")", throwError);
             else
-                return GetXmlFromName(method.DeclaringType, 'M', method.Name);
+                return GetXmlFromName(method.DeclaringType, 'M', method.Name, throwError);
         }
 
         /// <summary>
         /// Provides the documentation comments for a specific member.
         /// </summary>
         /// <param name="member">The MemberInfo (reflection data) or the member to find documentation for</param>
+		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The XML fragment describing the member</returns>
 		[SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-		public static XmlElement GetXmlFromMember(MemberInfo member)
+		public static XmlElement GetXmlFromMember(MemberInfo member, bool throwError = true)
         {
 			if (member == null)
 			{
@@ -81,7 +83,7 @@ namespace DocsByReflection
 			}
 
             // First character [0] of member type is prefix character in the name in the XML
-            return GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name);
+            return GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name, throwError);
         }
 
 		/// <summary>
@@ -107,12 +109,13 @@ namespace DocsByReflection
         /// Provides the documentation comments for a specific type
         /// </summary>
         /// <param name="type">Type to find the documentation for</param>
+		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The XML fragment that describes the type</returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-		public static XmlElement GetXmlFromType(Type type)
+		public static XmlElement GetXmlFromType(Type type, bool throwError = true)
         {
             // Prefix in type names is T
-            return GetXmlFromName(type, 'T', "");
+            return GetXmlFromName(type, 'T', "", throwError);
         }
 
 		/// <summary>
@@ -157,8 +160,9 @@ namespace DocsByReflection
         /// <param name="type">The type or parent type, used to fetch the assembly</param>
         /// <param name="prefix">The prefix as seen in the name attribute in the documentation XML</param>
         /// <param name="name">Where relevant, the full name qualifier for the element</param>
+		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The member that has a name that describes the specified reflection element</returns>
-        private static XmlElement GetXmlFromName(Type type, char prefix, string name)
+        private static XmlElement GetXmlFromName(Type type, char prefix, string name, bool throwError)
         {
 			string fullName = GetTypeFullNameForXmlDoc(type);
 
@@ -188,7 +192,7 @@ namespace DocsByReflection
                 }
             }
 
-            if (matchedElement == null)
+			if (matchedElement == null && throwError)
             {
                 throw new DocsByReflectionException("Could not find documentation for specified element", null);
             }

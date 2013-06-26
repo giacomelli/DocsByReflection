@@ -31,7 +31,12 @@ namespace DocsByReflection.UnitTests
 		public void GetAssemblyDocFileNameFromCodeBase_RightCodeBase_DocFileName ()
 		{
 			var actual = PathHelper.GetAssemblyDocFileNameFromCodeBase ("file:///Users/giacomelli/Dropbox/jogosdaqui/Plataforma/src/jogosdaqui.WebApi/Bin/jogosdaqui.WebApi.dll");
-			Assert.AreEqual ("/Users/giacomelli/Dropbox/jogosdaqui/Plataforma/src/jogosdaqui.WebApi/Bin/jogosdaqui.WebApi.xml", actual);
+
+			if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix) {			
+				Assert.AreEqual ("/Users/giacomelli/Dropbox/jogosdaqui/Plataforma/src/jogosdaqui.WebApi/Bin/jogosdaqui.WebApi.xml", actual);
+			} else {
+				Assert.AreEqual ("Users/giacomelli/Dropbox/jogosdaqui/Plataforma/src/jogosdaqui.WebApi/Bin/jogosdaqui.WebApi.xml", actual);
+			}
 		}
 	}
 }

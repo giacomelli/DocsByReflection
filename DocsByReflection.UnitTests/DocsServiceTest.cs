@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +25,15 @@ namespace DocsByReflection.UnitTests
 		public void GetXmlFromMember_PropertyWithoutDoc_Null()
 		{
 			var propertyInfo = typeof(Stub).GetProperty("PropertyWithoutDoc");
-			var actual = DocsService.GetXmlFromMember(propertyInfo);
-			Assert.IsNull(actual);
+			DocsService.GetXmlFromMember(propertyInfo);
+		}
+
+		[Test]
+		public void GetXmlFromMember_PropertyWithoutDocNotThrow_Null()
+		{
+			var propertyInfo = typeof(Stub).GetProperty("PropertyWithoutDoc");
+			var actual = DocsService.GetXmlFromMember(propertyInfo, false);
+			Assert.IsNull (actual);
 		}
 
 		[Test]
