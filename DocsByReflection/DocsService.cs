@@ -12,6 +12,7 @@ using System.Xml;
 using System.Globalization;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using HelperSharp;
 
 namespace DocsByReflection
 {
@@ -202,44 +203,29 @@ namespace DocsByReflection
         /// <returns>The XML document</returns>
         private static XmlDocument GetXmlFromAssemblyNonCached(Assembly assembly)
         {
-            string assemblyFilename = assembly.CodeBase;
+			string filePath = PathHelper.GetAssemblyDocFileNameFromCodeBase(assembly.CodeBase);
 
-            const string prefix = "file:///";
-
-            if (assemblyFilename.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            try
             {
-				var filePath = assemblyFilename.Substring(prefix.Length);;
-
-				if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
+				using(var streamReader = new StreamReader(filePath))
 				{
-					filePath = "/" + filePath;
-				}
-
-				filePath = Path.ChangeExtension(filePath, ".xml");
-
-                try
-                {
-					using(var streamReader = new StreamReader(filePath))
-					{
-						 XmlDocument xmlDocument = new XmlDocument();
-						xmlDocument.Load(streamReader);
-						return xmlDocument;
-					}                    
-                }
-				catch(DirectoryNotFoundException directoryException)
-				{
-					var msg = String.Format(CultureInfo.InvariantCulture, "Error trying to locate the XML documentation file on folder {0}.", filePath);
-					throw new DocsByReflectionException(msg, directoryException);
-				}
-                catch (FileNotFoundException exception)
-                {
-                    throw new DocsByReflectionException("XML documentation not present (make sure it is turned on in project properties when building)", exception);
-                }               
+					 XmlDocument xmlDocument = new XmlDocument();
+					xmlDocument.Load(streamReader);
+					return xmlDocument;
+				}                    
             }
-            else
+			catch(DirectoryNotFoundException directoryException)
+			{
+				var msg = String.Format(CultureInfo.InvariantCulture, "Error trying to locate the XML documentation file on folder {0}.", filePath);
+				throw new DocsByReflectionException(msg, directoryException);
+			}
+            catch (FileNotFoundException exception)
             {
-                throw new DocsByReflectionException("Could not ascertain assembly filename", null);
-            }
+                throw new DocsByReflectionException("XML documentation not present (make sure it is turned on in project properties when building)", exception);
+            }   
+			catch(Exception ex) {
+				throw new DocsByReflectionException ("Error trying to get documentation filer for assembly code base '{0}'.".With(assembly.CodeBase), ex);
+			}
 		}
 
 		/// <summary>
