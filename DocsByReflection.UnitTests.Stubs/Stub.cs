@@ -24,6 +24,10 @@ namespace DocsByReflection.UnitTests.Stubs
 		public void MethodWithGenericParameter(List<string> p)
 		{
 		}
+
+		public void MethodWithoutDoc(string value)
+		{
+		}
 		#endregion
 	}
 }

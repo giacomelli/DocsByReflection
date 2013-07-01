@@ -1,2 +1,11 @@
 DocsByReflection.UnitTests/test-results/
 test-results/
+DocsByReflection.UnitTests/bin/Debug/DocsByReflection.UnitTests.Stubs.dll
+DocsByReflection.UnitTests.Stubs/bin/Debug/DocsByReflection.UnitTests.Stubs.xml
+DocsByReflection.UnitTests.Stubs/obj/Debug/DocsByReflection.UnitTests.Stubs.csproj.FileListAbsolute.txt
+DocsByReflection.UnitTests.Stubs/obj/
+DocsByReflection.UnitTests/bin/
+DocsByReflection.UnitTests/obj/Debug/DocsByReflection.UnitTests.csproj.FileListAbsolute.txt
+DocsByReflection.UnitTests/obj/Debug/DocsByReflection.UnitTests.dll
+DocsByReflection.userprefs
+packages/

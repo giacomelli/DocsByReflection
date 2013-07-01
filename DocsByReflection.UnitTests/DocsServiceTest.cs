@@ -5,6 +5,7 @@ using System.Linq;
 using NUnit.Framework;
 using System.Reflection;
 using DocsByReflection.UnitTests.Stubs;
+using TestSharp;
 
 namespace DocsByReflection.UnitTests
 {
@@ -90,6 +91,28 @@ namespace DocsByReflection.UnitTests
 			var parameter = method.GetParameters()[0];
 			var actual = DocsService.GetXmlFromParameter(parameter);
 			Assert.AreEqual("Generic parameter.", actual.InnerText);
+		}
+
+		[Test]
+		public void GetXmlFromParameter_ParameterNoDoc_XmlElement()
+		{
+			var method = typeof(Stub).GetMethod("MethodWithoutDoc");
+			var parameter = method.GetParameters()[0];
+
+			ExceptionAssert.IsThrowing (new DocsByReflectionException("Could not find documentation for specified element", null), () => 
+			{
+				DocsService.GetXmlFromParameter(parameter);
+			});
+		}
+
+		[Test]
+		public void GetXmlFromParameter_ParameterNoDocNotThrow_XmlElement()
+		{
+			var method = typeof(Stub).GetMethod("MethodWithoutDoc");
+			var parameter = method.GetParameters()[0];
+
+			var actual = DocsService.GetXmlFromParameter(parameter, false);
+			Assert.IsNull (actual);
 		}
 		#endregion
 	}

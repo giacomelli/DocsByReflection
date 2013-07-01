@@ -90,9 +90,10 @@ namespace DocsByReflection
 		/// Provides the documentation comments for a specific parameter.
 		/// </summary>
 		/// <param name="parameter">The ParameterInfo (reflection data) to find documentation for.</param>
+		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
 		/// <returns>The XML fragment describing the paramter.</returns>
 		[SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-		public static XmlElement GetXmlFromParameter(ParameterInfo parameter)
+		public static XmlElement GetXmlFromParameter(ParameterInfo parameter, bool throwError = true)
 		{
 			if (parameter == null)
 			{
@@ -100,7 +101,11 @@ namespace DocsByReflection
 			}
 
 			var method = parameter.Member as MethodBase;
-			var memberDoc = method == null ? GetXmlFromMember(parameter.Member) : GetXmlFromMember(method);
+			var memberDoc = method == null ? GetXmlFromMember(parameter.Member, throwError) : GetXmlFromMember(method, throwError);
+
+			if (memberDoc == null) {
+				return null;
+			}
 
 			return memberDoc.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, "param[@name='{0}']", parameter.Name)) as XmlElement;
 		}
@@ -135,7 +140,6 @@ namespace DocsByReflection
 
 			try
 			{
-
 				if (!s_cache.ContainsKey(assembly))
 				{
 					// load the docuemnt into the cache
