@@ -1,5 +1,6 @@
 DocsByReflection
 ================
+[![Build Status](https://travis-ci.org/giacomelli/DocsByReflection.png?branch=master)](https://travis-ci.org/giacomelli/DocsByReflection)
 
 Discover the code documentation at runtime by reflection. 
 
