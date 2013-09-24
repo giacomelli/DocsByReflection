@@ -14,17 +14,17 @@ namespace DocsByReflection
 		/// Gets the assembly document file name from code base.
 		/// </summary>
 		/// <returns>The assembly document file name from code base.</returns>
-		/// <param name="assembyCodeBase">Assemby code base.</param>
-		public static string GetAssemblyDocFileNameFromCodeBase(string assembyCodeBase)
+		/// <param name="assemblyCodeBase">Assemby code base.</param>
+		public static string GetAssemblyDocFileNameFromCodeBase(string assemblyCodeBase)
 		{
-			if (String.IsNullOrWhiteSpace (assembyCodeBase)) {
+			if (String.IsNullOrWhiteSpace (assemblyCodeBase)) {
 				throw new ArgumentNullException ("assemblyCodeBase");
 			}
 
 			var prefix = "file:///";
 
-			if (assembyCodeBase.StartsWith (prefix, StringComparison.OrdinalIgnoreCase)) {
-				var filePath = assembyCodeBase.Substring (prefix.Length);
+			if (assemblyCodeBase.StartsWith (prefix, StringComparison.OrdinalIgnoreCase)) {
+				var filePath = assemblyCodeBase.Substring (prefix.Length);
 
 				if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix) {
 					filePath = "/" + filePath;
@@ -34,7 +34,7 @@ namespace DocsByReflection
 			}
 			else
 			{
-				throw new DocsByReflectionException("Could not ascertain assembly filename from assembly code base '{0}'.".With(assembyCodeBase));
+				throw new DocsByReflectionException("Could not ascertain assembly filename from assembly code base '{0}'.".With(assemblyCodeBase));
 			}
 		}
 		#endregion

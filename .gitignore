@@ -9,3 +9,4 @@ DocsByReflection.UnitTests/obj/Debug/DocsByReflection.UnitTests.csproj.FileListA
 DocsByReflection.UnitTests/obj/Debug/DocsByReflection.UnitTests.dll
 DocsByReflection.userprefs
 packages/
+TestResults/

@@ -116,7 +116,7 @@ namespace DocsByReflection
         /// <param name="type">Type to find the documentation for</param>
 		/// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The XML fragment that describes the type</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
 		public static XmlElement GetXmlFromType(Type type, bool throwError = true)
         {
             // Prefix in type names is T

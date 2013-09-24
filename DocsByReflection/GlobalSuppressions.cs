@@ -9,3 +9,6 @@
 // You do not need to add suppressions to this file manually.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "DocsByReflection.DocsService.#GetXmlFromMember(System.Reflection.MethodBase,System.Boolean)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "DocsByReflection.DocsService.#GetXmlFromMember(System.Reflection.MemberInfo,System.Boolean)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "DocsByReflection.DocsService.#GetXmlFromParameter(System.Reflection.ParameterInfo,System.Boolean)")]
