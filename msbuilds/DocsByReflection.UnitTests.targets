@@ -1,14 +1,12 @@
  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
- 
- <Target Name="AfterBuild">
-   	<ItemGroup>
-    	<DocFiles Include="..\DocsByReflection.UnitTests.Stubs\bin\Debug\DocsByReflection.UnitTests.Stubs.xml" />
-  	</ItemGroup>
-
-    <Copy
-        SourceFiles="@(DocFiles)"
-        DestinationFolder="bin\Debug"
-    />
-
-</Target>
+	<ItemGroup>
+		<DocFiles Include="..\DocsByReflection.UnitTests.Stubs\bin\Debug\DocsByReflection.UnitTests.Stubs.xml" />
+	</ItemGroup>
+    
+	<Target Name="AfterBuild">    
+		<Copy
+		SourceFiles="@(DocFiles)"
+		DestinationFolder="bin\Debug"
+		/>
+	</Target>
 </Project>
