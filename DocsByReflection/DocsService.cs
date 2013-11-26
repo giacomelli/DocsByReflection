@@ -127,15 +127,21 @@ namespace DocsByReflection
 		/// Obtains the documentation file for the specified assembly
 		/// </summary>
 		/// <param name="assembly">The assembly to find the XML document for</param>
+        /// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
 		/// <returns>The XML document</returns>
 		/// <remarks>This version uses a cache to preserve the assemblies, so that 
 		/// the XML file is not loaded and parsed on every single lookup</remarks>
 		[SuppressMessage("Microsoft.Usage", "CA2200:RethrowToPreserveStackDetails"), SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-		public static XmlDocument GetXmlFromAssembly(Assembly assembly)
+		public static XmlDocument GetXmlFromAssembly(Assembly assembly, bool throwError = true)
 		{
 			if (s_failCache.ContainsKey(assembly))
 			{
-				throw s_failCache[assembly];
+                if (throwError)
+                {
+                    throw s_failCache[assembly];
+                }
+
+                return null;
 			}
 
 			try
@@ -151,8 +157,14 @@ namespace DocsByReflection
 			catch (Exception exception)
 			{
 				s_failCache[assembly] = exception;
-				throw exception;
+
+                if (throwError)
+                {
+                    throw exception;
+                }
 			}
+
+            return null;
 		}
 		#endregion
 
@@ -179,20 +191,22 @@ namespace DocsByReflection
 				fullName = String.Format(CultureInfo.InvariantCulture, "{0}:{1}.{2}", prefix, fullName, name);
             }
 
-            XmlDocument xmlDocument = GetXmlFromAssembly(type.Assembly);
-
+            XmlDocument xmlDocument = GetXmlFromAssembly(type.Assembly, throwError);
             XmlElement matchedElement = null;
 
-            foreach (XmlElement xmlElement in xmlDocument["doc"]["members"])
+            if (xmlDocument != null)
             {
-                if (xmlElement.Attributes["name"].Value.Equals(fullName, StringComparison.OrdinalIgnoreCase))
+                foreach (XmlElement xmlElement in xmlDocument["doc"]["members"])
                 {
-                    if (matchedElement != null)
+                    if (xmlElement.Attributes["name"].Value.Equals(fullName, StringComparison.OrdinalIgnoreCase))
                     {
-                        throw new DocsByReflectionException("Multiple matches to query", null);
-                    }
+                        if (matchedElement != null)
+                        {
+                            throw new DocsByReflectionException("Multiple matches to query", null);
+                        }
 
-                    matchedElement = xmlElement;
+                        matchedElement = xmlElement;
+                    }
                 }
             }
 
