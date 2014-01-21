@@ -34,6 +34,9 @@ var assemblyDoc = DocsService.GetXmlFromAssembly(typeof(Stub).Assembly);
 
 ```
 
+### ThrowError parameter
+*All of the above methods have a last parameter called throwError. The default parameter's value is true, when value is true any documentation not found will throw an error, when value is false the method will return a null value.*
+
 
 License
 ========
