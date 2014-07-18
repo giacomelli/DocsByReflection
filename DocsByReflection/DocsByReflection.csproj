@@ -61,19 +61,24 @@
     <DocumentationFile>bin\Release\DocsByReflection.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HelperSharp, Version=1.0.5310.16532, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HelperSharp.0.0.3.7\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.2.7\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocsAssemblyService.cs" />
+    <Compile Include="DocsMethodService.cs" />
     <Compile Include="DocsService.cs" />
     <Compile Include="DocsByReflectionException.cs" />
+    <Compile Include="DocsTypeService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PathHelper.cs" />
+    <Compile Include="ThrowHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -92,6 +97,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -100,8 +108,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

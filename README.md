@@ -44,4 +44,7 @@ Licensed under the [LGPL (GNU LESSER GENERAL PUBLIC LICENSE)](http://www.gnu.org
 
 Change Log
 ========
-1.0.0 Initial version.
+* 1.0.8.0 
+	* Added fallback to try get documentation from methods with typed parameters on base class.
+	* Some internal refactorings.
+* 1.0.0.0 Initial version.

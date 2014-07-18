@@ -5,7 +5,7 @@ namespace DocsByReflection.UnitTests.Stubs
 	/// <summary>
 	/// Stub class.
 	/// </summary>
-	public class Stub : StubBase<int>
+	public class Stub : StubBase<int, string>
 	{
 		#region Properties
 		/// <summary>
