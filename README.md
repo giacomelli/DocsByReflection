@@ -40,11 +40,15 @@ var assemblyDoc = DocsService.GetXmlFromAssembly(typeof(Stub).Assembly);
 
 License
 ========
-Licensed under the [LGPL (GNU LESSER GENERAL PUBLIC LICENSE)](http://www.gnu.org/licenses/lgpl-3.0-standalone.html).
+DocsByReflection is release using a dual-license. You can choose the one that best fit your needs:
+
+- [MIT](http://opensource.org/licenses/MIT)
+- [LGPL](http://opensource.org/licenses/LGPL-3.0)
 
 Change Log
 ========
-* 1.0.8.0 
+* 1.0.9: Sign the assembly.
+* 1.0.8 
 	* Added fallback to try get documentation from methods with typed parameters on base class.
 	* Some internal refactorings.
-* 1.0.0.0 Initial version.
+* 1.0.0 Initial version.
