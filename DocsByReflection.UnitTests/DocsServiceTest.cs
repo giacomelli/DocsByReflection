@@ -58,6 +58,14 @@ namespace DocsByReflection.UnitTests
             Assert.AreEqual("MethodWithGenericParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
             Assert.AreEqual("Generic parameter.", actual.SelectSingleNode("param").InnerText.Trim());
         }
+        [Test]
+        public void GetXmlFromMember_MethodWithComplexGenericParameter_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithComplexGenericParameter");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithComplexGenericParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
+            Assert.AreEqual("Generic dictionary parameter.", actual.SelectSingleNode("param").InnerText.Trim());
+        }
 
         [Test]
         public void GetXmlFromMember_MethodWithGenericArgumentOnBaseClass_XmlElement()

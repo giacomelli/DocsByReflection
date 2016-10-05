@@ -21,11 +21,16 @@ namespace DocsByReflection
         {
             if (type.MemberType == MemberTypes.TypeInfo && type.IsGenericType && (!type.IsClass || isMethodParameter))
             {
+                //2016-10-06 by Jeffrey, support multiple generic arguments
                 return String.Format(CultureInfo.InvariantCulture,
-                    "{0}.{1}{{{2}}}",
-                    type.Namespace,
-                    type.Name.Replace("`1", ""),
-                    GetTypeFullNameForXmlDoc(type.GetGenericArguments().FirstOrDefault()));
+                     "{0}.{1}{{{2}}}",
+                     type.Namespace,
+                     //type.Name.Replace("`1", ""),
+                     System.Text.RegularExpressions.Regex.Replace(type.Name, "`[0-9]+", ""),
+                     string.Join(",",
+                         type.GetGenericArguments()
+                         .Select(o => GetTypeFullNameForXmlDoc(o)).ToArray()));
+                    //GetTypeFullNameForXmlDoc(type.GetGenericArguments().FirstOrDefault()));
             }
             else if (type.IsNested)
             {

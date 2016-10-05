@@ -28,6 +28,15 @@ namespace DocsByReflection.UnitTests.Stubs
 		public void MethodWithoutDoc(string value)
 		{
 		}
+        /// <summary>
+        /// MethodWithComplexGenericParameter method.
+        /// </summary>
+        /// <param name="p">Generic dictionary parameter.</param>
+        public void MethodWithComplexGenericParameter(Dictionary<string, string> p)
+        {
+
+        }
+
 		#endregion
 	}
 }
