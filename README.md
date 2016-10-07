@@ -1,6 +1,6 @@
 DocsByReflection
 ================
-[![Build Status](https://travis-ci.org/giacomelli/DocsByReflection.png?branch=master)](https://travis-ci.org/giacomelli/DocsByReflection)
+[![Build status](https://ci.appveyor.com/api/projects/status/fsi87lngik22t534/branch/master?svg=true)](https://ci.appveyor.com/project/giacomelli/docsbyreflection/branch/master)
 
 Discover the code documentation at runtime by reflection. 
 
