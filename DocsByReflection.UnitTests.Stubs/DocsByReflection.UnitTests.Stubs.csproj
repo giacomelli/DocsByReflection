@@ -45,6 +45,7 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\CI</OutputPath>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\CI\DocsByReflection.UnitTests.Stubs.xml</DocumentationFile>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
