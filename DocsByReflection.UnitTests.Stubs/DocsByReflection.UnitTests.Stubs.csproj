@@ -41,6 +41,13 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>DocsByReflection.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CI|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\CI</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>

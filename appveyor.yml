@@ -1,6 +1,6 @@
 version: 1.0.9.{build}
 os: Visual Studio 2015
-configuration: Debug
+configuration: CI
 
 nuget:
   account_feed: true
