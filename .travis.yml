@@ -1,9 +1,0 @@
-language: c
- 
-install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
-  - mozroots --import --sync
- 
-script:
-  - xbuild ./DocsByReflection.sln /property:"Configuration=Debug;Platform=Any CPU"
-  - nunit-console ./DocsByReflection.UnitTests/bin/Debug/DocsByReflection.UnitTests.dll
