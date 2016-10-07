@@ -38,6 +38,13 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>DocsByReflection.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CI|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\CI</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HelperSharp, Version=1.0.5560.27038, Culture=neutral, PublicKeyToken=3d44152485e1a4e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -7,7 +7,7 @@ namespace DocsByReflection
 	/// <summary>
 	/// Internal path helper.
 	/// </summary>
-	internal static class PathHelper
+	public static class PathHelper
 	{
 		#region Methods
 		/// <summary>

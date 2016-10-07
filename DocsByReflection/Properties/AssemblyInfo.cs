@@ -35,10 +35,3 @@ using System;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.8.0")]
 [assembly: AssemblyFileVersion("1.0.8.0")]
-
-[assembly: InternalsVisibleTo("DocsByReflection.UnitTests,PublicKey=" + 
-    "0024000004800000940000000602000000240000525341310004000001000100d34ee7c8638ab2"+
-    "27e18b41932e02047cbb101b6a18a41311590f89c272b4857124243062f81aa0426ed5c822bc78"+
-    "0485e9fecd1d0c15b0d797d236292605be77d53780e163f1e40aba74e2223f79858238919cc5d4"+
-    "b655eedf8e056c3fbb4c9c996f8cfbd2350b218e9251090548b9daef9bfc90d25a43c9b5620065"+
-    "a9984ec9")]
