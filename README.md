@@ -1,6 +1,6 @@
 DocsByReflection
 ================
-[![Build status](https://ci.appveyor.com/api/projects/status/fsi87lngik22t534/branch/master?svg=true)](https://ci.appveyor.com/project/giacomelli/docsbyreflection/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/fsi87lngik22t534?svg=true)](https://ci.appveyor.com/project/giacomelli/docsbyreflection)
 
 Discover the code documentation at runtime by reflection. 
 
