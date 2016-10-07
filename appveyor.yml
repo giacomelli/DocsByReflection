@@ -12,3 +12,13 @@ before_build:
 build:
   project: DocsByReflection.sln
   verbosity: normal
+
+after_build:
+- cmd: >-
+    mkdir .\src\nuget
+
+    nuget pack .\DocsByReflection\DocsByReflection.csproj -IncludeReferencedProjects -Version %APPVEYOR_BUILD_VERSION% -OutputDirectory .\nuget
+
+artifacts:
+  - path: .\nuget\*.nupkg
+    name: NuGet packages
