@@ -1,6 +1,6 @@
 DocsByReflection
 ================
-[![Build Status](https://travis-ci.org/giacomelli/DocsByReflection.png?branch=master)](https://travis-ci.org/giacomelli/DocsByReflection)
+[![Build status](https://ci.appveyor.com/api/projects/status/fsi87lngik22t534?svg=true)](https://ci.appveyor.com/project/giacomelli/docsbyreflection)
 
 Discover the code documentation at runtime by reflection. 
 
@@ -44,11 +44,3 @@ DocsByReflection is release using a dual-license. You can choose the one that be
 
 - [MIT](http://opensource.org/licenses/MIT)
 - [LGPL](http://opensource.org/licenses/LGPL-3.0)
-
-Change Log
-========
-* 1.0.9: Sign the assembly.
-* 1.0.8 
-	* Added fallback to try get documentation from methods with typed parameters on base class.
-	* Some internal refactorings.
-* 1.0.0 Initial version.

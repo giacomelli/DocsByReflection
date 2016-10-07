@@ -1,24 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{454C8755-5ADD-4C77-B4DA-076F40B649C0}"
-	ProjectSection(SolutionItems) = preProject
-		DocsByReflection.vsmdi = DocsByReflection.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsByReflection", "DocsByReflection\DocsByReflection.csproj", "{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsByReflection.UnitTests", "DocsByReflection.UnitTests\DocsByReflection.UnitTests.csproj", "{1D805670-75B4-4833-8B30-87DD5DF661C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsByReflection.UnitTests.Stubs", "DocsByReflection.UnitTests.Stubs\DocsByReflection.UnitTests.Stubs.csproj", "{4514ACEE-9543-4A15-B0AE-00B7D58587DB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B21509D6-F1BF-41F2-962B-2BBE5F6E8B43}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -27,20 +13,27 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		CI|Any CPU = CI|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.Build.0 = CI|Any CPU
 		{1D805670-75B4-4833-8B30-87DD5DF661C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D805670-75B4-4833-8B30-87DD5DF661C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D805670-75B4-4833-8B30-87DD5DF661C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D805670-75B4-4833-8B30-87DD5DF661C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D805670-75B4-4833-8B30-87DD5DF661C2}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{1D805670-75B4-4833-8B30-87DD5DF661C2}.CI|Any CPU.Build.0 = CI|Any CPU
 		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{4514ACEE-9543-4A15-B0AE-00B7D58587DB}.CI|Any CPU.Build.0 = CI|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
