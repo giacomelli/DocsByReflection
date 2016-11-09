@@ -75,6 +75,54 @@ namespace DocsByReflection.UnitTests
             Assert.AreEqual("Creates the specified entity.", actual.SelectSingleNode("summary").InnerText.Trim());
             Assert.AreEqual("The entity.", actual.SelectSingleNode("param").InnerText.Trim());
         }
+
+        [Test]
+        public void GetXmlFromMember_MethodWithCollectionReturnType_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithCollectionReturnType");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithCollectionReturnType method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
+ 
+        [Test]
+        public void GetXmlFromMember_MethodWithGenericType_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithGenericType");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithGenericType method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
+ 
+        [Test]
+        public void GetXmlFromMember_MethodWithGenericCollectionType_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithGenericCollectionType");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithGenericCollectionType method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
+ 
+        [Test]
+        public void GetXmlFromMember_MethodWithOutParameter_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithOutParameter");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithOutParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
+ 
+        [Test]
+        public void GetXmlFromMember_MethodWithCollectionOutParameter_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithCollectionOutParameter");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithCollectionOutParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
+ 
+        [Test]
+        public void GetXmlFromMember_MethodWithCollectionOutGenericTypeParameter_XmlElement()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithCollectionOutGenericTypeParameter");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithCollectionOutGenericTypeParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
         #endregion
 
         #region GetXmlFromType

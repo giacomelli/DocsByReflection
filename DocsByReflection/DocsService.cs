@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Xml;
 using HelperSharp;
+using System.Collections.Generic;
 
 namespace DocsByReflection
 {
@@ -43,7 +44,21 @@ namespace DocsByReflection
             ExceptionHelper.ThrowIfNull("member", member);
 
             // First character [0] of member type is prefix character in the name in the XML
-            return DocsTypeService.GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name, throwError);
+            char prefix = member.MemberType.ToString()[0];
+            ParameterInfo[] parameters = null;
+            if (((PropertyInfo)member).CanRead)
+               parameters = ((PropertyInfo)member).GetGetMethod().GetParameters();
+            List < string > strParameters = new List<string>();
+            //Handles getter/setter style properties
+            if (parameters != null && parameters.Length > 0)
+               {
+                   foreach (ParameterInfo parameterInfo in parameters)
+                    strParameters.Add(DocsTypeService.GetTypeFullNameForXmlDoc(parameterInfo.ParameterType, parameterInfo.IsOut | parameterInfo.ParameterType.IsByRef, true));
+                   return DocsTypeService.GetXmlFromName(member.ReflectedType, prefix, member.Name + "({0})".With(string.Join(",", strParameters)), throwError);
+               }
+            //handles regular properties
+            else
+                return DocsTypeService.GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name, throwError);
         }
 
         /// <summary>

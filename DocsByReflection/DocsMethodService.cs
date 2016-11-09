@@ -28,13 +28,14 @@ namespace DocsByReflection
 
             foreach (var parameterInfo in method.GetParameters())
             {
-                parameters.Add(DocsTypeService.GetTypeFullNameForXmlDoc(parameterInfo.ParameterType, true));
+                parameters.Add(DocsTypeService.GetTypeFullNameForXmlDoc(parameterInfo.ParameterType, parameterInfo.IsOut | parameterInfo.ParameterType.IsByRef, true));
             }
 
             //AL: 15.04.2008 ==> BUG-FIX remove “()” if parametersString is empty
             if (parameters.Count > 0)
             {
-                var result = DocsTypeService.GetXmlFromName(method.DeclaringType, 'M', method.Name + "({0})".With(String.Join(",", parameters)), false);
+                //JA: 11.8.2016 Add ``1 to end of the resulting name if the method is a generic method
+                var result = DocsTypeService.GetXmlFromName(method.DeclaringType, 'M', string.Format("{0}{1}{2}", method.Name, method.IsGenericMethod ? "``1" : string.Empty, "({0})".With(String.Join(",", parameters))), false);
 
                 // Try a fallback for case where a method with generic parameters is defined on base class.
                 if (result == null)

@@ -15,30 +15,37 @@ namespace DocsByReflection
         /// Gets the type's full name prepared for xml documentation format.
         /// </summary>
         /// <param name="type">The type.</param>
+        /// <param name="isOut">Whether the declaring member for this type is an out directional parameter.</param>
         /// <param name="isMethodParameter">If the type is being used has a method parameter.</param>
         /// <returns>The full name.</returns>
-        public static string GetTypeFullNameForXmlDoc(Type type, bool isMethodParameter = false)
+        public static string GetTypeFullNameForXmlDoc(Type type, bool isOut = false, bool isMethodParameter = false)
         {
-            if (type.MemberType == MemberTypes.TypeInfo && type.IsGenericType && (!type.IsClass || isMethodParameter))
+            //JA: 11.8.2016 Generic parameter type handling
+            if (type.Name.Equals("T"))
+                return "``0";
+            Type[] args = type.GetGenericArguments();
+            string fullTypeName = string.Empty;
+            string typeNamespace = type.Namespace == null ? "" : string.Format("{0}.", type.Namespace);
+            if (type.MemberType == MemberTypes.TypeInfo && (type.IsGenericType || args.Length > 0) && (!type.IsClass || isMethodParameter))
             {
                 //2016-10-06 by Jeffrey, support multiple generic arguments
                 return String.Format(CultureInfo.InvariantCulture,
-                     "{0}.{1}{{{2}}}",
-                     type.Namespace,
+                     "{0}{1}{{{2}}}{3}",
+                     typeNamespace,
                      //type.Name.Replace("`1", ""),
                      System.Text.RegularExpressions.Regex.Replace(type.Name, "`[0-9]+", ""),
                      string.Join(",",
-                         type.GetGenericArguments()
-                         .Select(o => GetTypeFullNameForXmlDoc(o)).ToArray()));
+                         //JA: 11.8.2016 Nested parameters will never be out parameters but still need to maintain the flag for isMethodParameter
+                         args.Select(o => GetTypeFullNameForXmlDoc(o, false, isMethodParameter)).ToArray()), isOut ? "@" : "").Replace("&", "");
                     //GetTypeFullNameForXmlDoc(type.GetGenericArguments().FirstOrDefault()));
             }
             else if (type.IsNested)
             {
-                return String.Format(CultureInfo.InvariantCulture, "{0}.{1}.{2}", type.Namespace, type.DeclaringType.Name, type.Name);
+                return String.Format(CultureInfo.InvariantCulture, "{0}{1}.{2}{3}", typeNamespace, type.DeclaringType.Name, type.Name, isOut ? "@" : "").Replace("&", "");
             }
             else
             {
-                return String.Format(CultureInfo.InvariantCulture, "{0}.{1}", type.Namespace, type.Name);
+                return String.Format(CultureInfo.InvariantCulture, "{0}{1}{2}", typeNamespace, type.Name, isOut ? "@" : "").Replace("&", "");
             }
         }
 
