@@ -71,6 +71,8 @@ namespace DocsByReflection
             {
                 foreach (XmlElement xmlElement in xmlDocument["doc"]["members"])
                 {
+                    if (xmlElement.NodeType == XmlNodeType.Comment)
+                        continue;
                     if (xmlElement.Attributes["name"].Value.Equals(fullName, StringComparison.OrdinalIgnoreCase))
                     {
                         if (matchedElement != null)
