@@ -23,7 +23,65 @@ namespace DocsByReflection.UnitTests.Stubs
 		/// <param name="p">Generic parameter.</param>
 		public void MethodWithGenericParameter(List<string> p)
 		{
-		}
+        }
+
+        /// <summary>
+        /// MethodWithCollectionReturnType method.
+        /// </summary>
+        /// <returns>A new <see cref="Dictionary{TKey, TValue}"/>.</returns>
+        public Dictionary<string, List<string>> MethodWithCollectionReturnType()
+        {
+            return new Dictionary<string, List<string>>();
+        }
+
+        /// <summary>
+        /// MethodWithGenericType method.
+        /// </summary>
+        /// <typeparam name="T">The generic type parameter.</typeparam>
+        /// <param name="parameter">The value of the generic type parameter.</param>
+        /// <returns>The <see cref="{T}"/> parameter supplied to the method.</returns>
+        public T MethodWithGenericType<T>(T parameter)
+        {
+            return parameter;
+        }
+
+        /// <summary>
+        /// MethodWithGenericCollectionType method.
+        /// </summary>
+        /// <typeparam name="T">The generic type parameter.</typeparam>
+        /// <param name="parameter">The value of the generic type parameter.</param>
+        /// <returns>The <see cref="{T}"/> parameter supplied to the method.</returns>
+        public List<T> MethodWithGenericCollectionType<T>(List<T> parameter)
+        {
+            return parameter;
+        }
+
+        /// <summary>
+        /// MethodWithOutParameter method.
+        /// </summary>
+        /// <param name="parameter">MethodWithOutParameter parameter.</param>
+        public void MethodWithOutParameter(out bool parameter)
+        {
+            parameter = false;
+        }
+
+        /// <summary>
+        /// MethodWithCollectionOutParameter method.
+        /// </summary>
+        /// <param name="parameter">MethodWithCollectionOutParameter parameter.</param>
+        public void MethodWithCollectionOutParameter(out Dictionary<string, List<string>> parameter)
+        {
+            parameter = new Dictionary<string, List<string>>();
+        }
+
+        /// <summary>
+        /// MethodWithCollectionOutGenericTypeParameter method.
+        /// </summary>
+        /// <param name="parameter">MethodWithCollectionOutGenericTypeParameter parameter.</param>
+        public void MethodWithCollectionOutGenericTypeParameter<T>(out Dictionary<T, List<T>> parameter)
+        {
+            parameter = new Dictionary<T, List<T>>();
+        }
 
 		public void MethodWithoutDoc(string value)
 		{
