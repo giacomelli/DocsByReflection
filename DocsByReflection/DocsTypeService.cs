@@ -76,8 +76,13 @@ namespace DocsByReflection
 
             if (xmlDocument != null)
             {
-                foreach (XmlElement xmlElement in xmlDocument["doc"]["members"])
+                foreach (XmlNode xmlNode in xmlDocument["doc"]["members"])
                 {
+                    if (!(xmlNode is XmlElement))
+                        continue;
+
+                    var xmlElement = (XmlElement)xmlNode;
+
                     if (xmlElement.NodeType == XmlNodeType.Comment)
                         continue;
                     if (xmlElement.Attributes["name"].Value.Equals(fullName, StringComparison.OrdinalIgnoreCase))
