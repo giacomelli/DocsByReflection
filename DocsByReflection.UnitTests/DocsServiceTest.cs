@@ -123,6 +123,14 @@ namespace DocsByReflection.UnitTests
             var actual = DocsService.GetXmlFromMember(method);
             Assert.AreEqual("MethodWithCollectionOutGenericTypeParameter method.", actual.SelectSingleNode("summary").InnerText.Trim());
         }
+
+        [Test]
+        public void GetXmlFromMember_MethodWithCollectionOfInnerClass()
+        {
+            var method = typeof(Stub).GetMethod("MethodWithCollectionOfInnerClass");
+            var actual = DocsService.GetXmlFromMember(method);
+            Assert.AreEqual("MethodWithCollectionOfInnerClass method.", actual.SelectSingleNode("summary").InnerText.Trim());
+        }
         #endregion
 
         #region GetXmlFromType
