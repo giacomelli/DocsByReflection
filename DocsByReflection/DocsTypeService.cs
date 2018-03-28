@@ -43,6 +43,10 @@ namespace DocsByReflection
             {
                 return String.Format(CultureInfo.InvariantCulture, "{0}{1}.{2}{3}", typeNamespace, type.DeclaringType.Name, type.Name, isOut ? "@" : "").Replace("&", "");
             }
+            else if (type.GetElementType() != null && type.GetElementType().IsNested)
+            {
+                return String.Format(CultureInfo.InvariantCulture, "{0}{1}.{2}{3}", typeNamespace, type.GetElementType().DeclaringType.Name, type.Name, isOut ? "@" : "").Replace("&", "");
+            }            
             else
             {
                 return String.Format(CultureInfo.InvariantCulture, "{0}{1}{2}", typeNamespace, type.Name, isOut ? "@" : "").Replace("&", "");

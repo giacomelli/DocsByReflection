@@ -95,6 +95,20 @@ namespace DocsByReflection.UnitTests.Stubs
 
         }
 
+        /// <summary>
+        /// MethodWithCollectionOfInnerClass method.
+        /// </summary>
+        /// <param name="p">Array of nested class parameter.</param>
+        public void MethodWithCollectionOfInnerClass(InnerClass[] p)
+        {
+
+        }
+
+        /// <summary>
+        /// A nested class
+        /// </summary>
+        public class InnerClass
+        { }
 		#endregion
 	}
 }
