@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using HelperSharp;
 
 namespace DocsByReflection
 {
@@ -17,7 +16,7 @@ namespace DocsByReflection
 		/// <param name="assemblyCodeBase">Assemby code base.</param>
 		public static string GetAssemblyDocFileNameFromCodeBase(string assemblyCodeBase)
 		{
-			if (String.IsNullOrWhiteSpace (assemblyCodeBase)) {
+			if (string.IsNullOrWhiteSpace (assemblyCodeBase)) {
 				throw new ArgumentNullException ("assemblyCodeBase");
 			}
 
@@ -34,7 +33,7 @@ namespace DocsByReflection
 			}
 			else
 			{
-				throw new DocsByReflectionException("Could not ascertain assembly filename from assembly code base '{0}'.".With(assemblyCodeBase));
+				throw new DocsByReflectionException(string.Format("Could not ascertain assembly filename from assembly code base '{0}'.", assemblyCodeBase));
 			}
 		}
 		#endregion

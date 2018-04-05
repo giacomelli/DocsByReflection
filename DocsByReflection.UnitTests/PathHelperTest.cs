@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using TestSharp;
 
 namespace DocsByReflection.UnitTests
 {
@@ -10,12 +9,12 @@ namespace DocsByReflection.UnitTests
         [Test()]
         public void GetAssemblyDocFileNameFromCodeBase_NullOrEmpty_Exception()
         {
-            ExceptionAssert.IsThrowing(new ArgumentNullException("assemblyCodeBase"), () =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 PathHelper.GetAssemblyDocFileNameFromCodeBase(null);
             });
 
-            ExceptionAssert.IsThrowing(new ArgumentNullException("assemblyCodeBase"), () =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 PathHelper.GetAssemblyDocFileNameFromCodeBase("");
             });
@@ -24,10 +23,10 @@ namespace DocsByReflection.UnitTests
         [Test()]
         public void GetAssemblyDocFileNameFromCodeBase_DoesNotStartWithPrefix_Exception()
         {
-            ExceptionAssert.IsThrowing(new DocsByReflectionException("Could not ascertain assembly filename from assembly code base 'file://notExists'."), () =>
+            Assert.Throws<DocsByReflectionException>(() =>
             {
                 PathHelper.GetAssemblyDocFileNameFromCodeBase("file://notExists");
-            });
+            }, "Could not ascertain assembly filename from assembly code base 'file://notExists'.");
         }
 
         [Test()]

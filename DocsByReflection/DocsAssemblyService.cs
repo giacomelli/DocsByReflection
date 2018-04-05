@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml;
-using HelperSharp;
 
 namespace DocsByReflection
 {
@@ -91,7 +90,7 @@ namespace DocsByReflection
             }
             catch (DirectoryNotFoundException directoryException)
             {
-                var msg = String.Format(CultureInfo.InvariantCulture, "Error trying to locate the XML documentation file on folder {0}.", filePath);
+                var msg = string.Format(CultureInfo.InvariantCulture, "Error trying to locate the XML documentation file on folder {0}.", filePath);
                 throw new DocsByReflectionException(msg, directoryException);
             }
             catch (FileNotFoundException exception)
@@ -100,7 +99,7 @@ namespace DocsByReflection
             }
             catch (Exception ex)
             {
-                throw new DocsByReflectionException("Error trying to get documentation filer for assembly code base '{0}'.".With(assembly.CodeBase), ex);
+                throw new DocsByReflectionException(string.Format("Error trying to get documentation filer for assembly code base '{0}'.", assembly.CodeBase), ex);
             }
         }
         #endregion

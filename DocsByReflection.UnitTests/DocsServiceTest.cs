@@ -1,6 +1,5 @@
 using DocsByReflection.UnitTests.Stubs;
 using NUnit.Framework;
-using TestSharp;
 
 namespace DocsByReflection.UnitTests
 {
@@ -17,11 +16,13 @@ namespace DocsByReflection.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(DocsByReflectionException))]
         public void GetXmlFromMember_PropertyWithoutDoc_Null()
         {
-            var propertyInfo = typeof(Stub).GetProperty("PropertyWithoutDoc");
-            DocsService.GetXmlFromMember(propertyInfo);
+            Assert.Throws<DocsByReflectionException>(() =>
+            {
+                var propertyInfo = typeof(Stub).GetProperty("PropertyWithoutDoc");
+                DocsService.GetXmlFromMember(propertyInfo);
+            });
         }
 
         [Test]
@@ -167,10 +168,10 @@ namespace DocsByReflection.UnitTests
             var method = typeof(Stub).GetMethod("MethodWithoutDoc");
             var parameter = method.GetParameters()[0];
 
-            ExceptionAssert.IsThrowing(new DocsByReflectionException("Could not find documentation for specified element", null), () =>
+            Assert.Throws< DocsByReflectionException>(() =>
             {
                 DocsService.GetXmlFromParameter(parameter);
-            });
+            }, "Could not find documentation for specified element");
         }
 
         [Test]
