@@ -13,5 +13,5 @@ build_script:
   - cmd: dotnet publish ./DocsByReflection/DocsByReflection.csproj
 
 artifacts:
-  - path: ./DocsByReflection/bin/Release/*.nupkg
+  - path: ./DocsByReflection/bin/CI/*.nupkg
     name: NuGet packages
