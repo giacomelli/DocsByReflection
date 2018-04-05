@@ -33,10 +33,11 @@
     <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DocsByReflection.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CI|AnyCPU' ">
     <Optimize>false</Optimize>
@@ -89,18 +90,20 @@
     <Compile Include="PathHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DocsByReflection.UnitTests.Stubs\DocsByReflection.UnitTests.Stubs.csproj">
+      <Project>{4514acee-9543-4a15-b0ae-00b7d58587db}</Project>
+      <Name>DocsByReflection.UnitTests.Stubs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DocsByReflection\DocsByReflection.csproj">
       <Project>{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}</Project>
       <Name>DocsByReflection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocsByReflection.UnitTests.Stubs\DocsByReflection.UnitTests.Stubs.csproj">
-      <Project>{4514ACEE-9543-4A15-B0AE-00B7D58587DB}</Project>
-      <Name>DocsByReflection.UnitTests.Stubs</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DocsByReflection.snk" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

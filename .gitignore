@@ -1,3 +1,5 @@
+.vs/
+bin/
 DocsByReflection.UnitTests/test-results/
 test-results/
 DocsByReflection.UnitTests/bin/Debug/DocsByReflection.UnitTests.Stubs.dll
