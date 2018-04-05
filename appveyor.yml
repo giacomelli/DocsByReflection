@@ -6,10 +6,12 @@ nuget:
   account_feed: true
   project_feed: true
 
-build:
-  project: DocsByReflection.sln
-  verbosity: normal
+before_build:
+  - cmd: dotnet restore DocsByReflection.sln
+
+build_script:
+  - cmd: dotnet publish ./DocsByReflection/DocsByReflection.csproj
 
 artifacts:
-  - path: .\*.nupkg
+  - path: ./DocsByReflection/bin/Release/*.nupkg
     name: NuGet packages
