@@ -5,12 +5,11 @@
 //General Public License. Please see the files COPYING and COPYING.LESSER.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 using System.Xml;
-using HelperSharp;
-using System.Collections.Generic;
 
 namespace DocsByReflection
 {
@@ -41,20 +40,21 @@ namespace DocsByReflection
         [SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
         public static XmlElement GetXmlFromMember(MemberInfo member, bool throwError = true)
         {
-            ExceptionHelper.ThrowIfNull("member", member);
+            if (member == null)
+                throw new ArgumentNullException(nameof(member));
 
             // First character [0] of member type is prefix character in the name in the XML
-            char prefix = member.MemberType.ToString()[0];
+            var prefix = member.MemberType.ToString()[0];
             ParameterInfo[] parameters = null;
             if (((PropertyInfo)member).CanRead)
                parameters = ((PropertyInfo)member).GetGetMethod().GetParameters();
-            List < string > strParameters = new List<string>();
+            var strParameters = new List<string>();
             //Handles getter/setter style properties
             if (parameters != null && parameters.Length > 0)
                {
                    foreach (ParameterInfo parameterInfo in parameters)
                     strParameters.Add(DocsTypeService.GetTypeFullNameForXmlDoc(parameterInfo.ParameterType, parameterInfo.IsOut | parameterInfo.ParameterType.IsByRef, true));
-                   return DocsTypeService.GetXmlFromName(member.ReflectedType, prefix, member.Name + "({0})".With(string.Join(",", strParameters)), throwError);
+                   return DocsTypeService.GetXmlFromName(member.ReflectedType, prefix, string.Format(member.Name + "({0})", string.Join(",", strParameters)), throwError);
                }
             //handles regular properties
             else
@@ -70,7 +70,8 @@ namespace DocsByReflection
         [SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
         public static XmlElement GetXmlFromParameter(ParameterInfo parameter, bool throwError = true)
         {
-            ExceptionHelper.ThrowIfNull("parameter", parameter);
+            if (parameter == null)
+                throw new ArgumentNullException(nameof(parameter));
 
             var method = parameter.Member as MethodBase;
             var memberDoc = method == null ? GetXmlFromMember(parameter.Member, throwError) : GetXmlFromMember(method, throwError);
@@ -80,7 +81,7 @@ namespace DocsByReflection
                 return null;
             }
 
-            return memberDoc.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, "param[@name='{0}']", parameter.Name)) as XmlElement;
+            return memberDoc.SelectSingleNode(string.Format(CultureInfo.InvariantCulture, "param[@name='{0}']", parameter.Name)) as XmlElement;
         }
 
         /// <summary>

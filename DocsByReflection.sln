@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsByReflection", "DocsByReflection\DocsByReflection.csproj", "{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocsByReflection", "DocsByReflection\DocsByReflection.csproj", "{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocsByReflection.UnitTests", "DocsByReflection.UnitTests\DocsByReflection.UnitTests.csproj", "{1D805670-75B4-4833-8B30-87DD5DF661C2}"
 EndProject
@@ -15,8 +15,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.ActiveCfg = CI|Any CPU
-		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.Build.0 = CI|Any CPU
+		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.ActiveCfg = Release|Any CPU
+		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.CI|Any CPU.Build.0 = Release|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8873F51-9F40-4CA8-BCF8-88A2AD97823C}.Release|Any CPU.ActiveCfg = Release|Any CPU
