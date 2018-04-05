@@ -10,7 +10,7 @@ before_build:
   - cmd: dotnet restore DocsByReflection.sln
 
 build_script:
-  - cmd: dotnet publish ./DocsByReflection/DocsByReflection.csproj
+  - cmd: dotnet build ./DocsByReflection/DocsByReflection.csproj
 
 artifacts:
   - path: ./DocsByReflection/bin/CI/*.nupkg
