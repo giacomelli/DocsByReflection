@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DocsByReflection.UnitTests
 {
     [TestFixture]
-    public class DocsServiceTest
+    public partial class DocsServiceTest
     {
         #region GetXmlFromMember for properties
         [Test]
