@@ -1,4 +1,4 @@
-version: 1.0.13.{build}
+version: 1.0.14.{build}
 os: Visual Studio 2017
 configuration: CI
 
