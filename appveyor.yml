@@ -12,6 +12,9 @@ before_build:
 build_script:
   - cmd: dotnet build ./DocsByReflection/DocsByReflection.csproj
 
+test_script:
+- cmd: dotnet test ./DocsByReflection/DocsByReflection.csproj
+
 artifacts:
   - path: ./DocsByReflection/bin/CI/*.nupkg
     name: NuGet packages
