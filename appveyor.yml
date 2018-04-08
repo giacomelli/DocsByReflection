@@ -13,7 +13,7 @@ build_script:
   - cmd: dotnet build ./DocsByReflection/DocsByReflection.csproj
 
 test_script:
-- cmd: dotnet test ./DocsByReflection/DocsByReflection.csproj
+- cmd: dotnet test ./DocsByReflection.UnitTests/DocsByReflection.UnitTests.csproj
 
 artifacts:
   - path: ./DocsByReflection/bin/CI/*.nupkg
