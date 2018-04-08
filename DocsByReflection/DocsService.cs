@@ -43,19 +43,26 @@ namespace DocsByReflection
             if (member == null)
                 throw new ArgumentNullException(nameof(member));
 
-            // First character [0] of member type is prefix character in the name in the XML
+            // First character [0] of member type is prefix character in the name in the XML.
             var prefix = member.MemberType.ToString()[0];
             ParameterInfo[] parameters = null;
-            if (((PropertyInfo)member).CanRead)
-               parameters = ((PropertyInfo)member).GetGetMethod().GetParameters();
+            var propertyInfo = member as PropertyInfo;
+
+            if (propertyInfo != null && propertyInfo.CanRead)
+            {
+                parameters = propertyInfo.GetGetMethod().GetParameters();
+            }
+
             var strParameters = new List<string>();
-            //Handles getter/setter style properties
+
+            // Handles getter/setter style properties.
             if (parameters != null && parameters.Length > 0)
-               {
-                   foreach (ParameterInfo parameterInfo in parameters)
+            {
+                foreach (ParameterInfo parameterInfo in parameters)
                     strParameters.Add(DocsTypeService.GetTypeFullNameForXmlDoc(parameterInfo.ParameterType, parameterInfo.IsOut | parameterInfo.ParameterType.IsByRef, true));
-                   return DocsTypeService.GetXmlFromName(member.ReflectedType, prefix, string.Format(member.Name + "({0})", string.Join(",", strParameters)), throwError);
-               }
+
+                return DocsTypeService.GetXmlFromName(member.ReflectedType, prefix, string.Format(member.Name + "({0})", string.Join(",", strParameters)), throwError);
+            }
             //handles regular properties
             else
                 return DocsTypeService.GetXmlFromName(member.DeclaringType, member.MemberType.ToString()[0], member.Name, throwError);
