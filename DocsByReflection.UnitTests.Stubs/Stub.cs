@@ -7,11 +7,20 @@ namespace DocsByReflection.UnitTests.Stubs
 	/// </summary>
 	public class Stub : StubBase<int, string>
 	{
-		#region Properties
-		/// <summary>
-		/// Gets or sets PropertyWithDoc.
-		/// </summary>
-		public string PropertyWithDoc { get; set; }
+        #region Fields
+        /// <summary>
+        /// Gets or sets FieldWithDoc.
+        /// </summary>
+        private string FieldWithDoc;
+
+        private string FieldWithoutDoc;
+        #endregion 
+
+        #region Properties
+        /// <summary>
+        /// Gets or sets PropertyWithDoc.
+        /// </summary>
+        public string PropertyWithDoc { get; set; }
 
 		public string PropertyWithoutDoc { get; set; }
 		#endregion

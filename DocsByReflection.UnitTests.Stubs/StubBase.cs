@@ -2,6 +2,18 @@
 {
     public abstract class StubBase<TKey, TEntity>
     {
+        #region Fields
+        /// <summary>
+        /// Gets or sets FieldGenericOnBaseClassWithDoc.
+        /// </summary>
+        protected TKey FieldGenericOnBaseClassWithDoc;
+
+        /// <summary>
+        /// Gets or sets FieldOnBaseClassWithDoc.
+        /// </summary>
+        protected string FieldOnBaseClassWithDoc;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Gets or sets PropertyGenericOnBaseClassWithDoc.
@@ -22,6 +34,8 @@
         /// <returns>The entity with new created id.</returns>
         public TEntity Create(TEntity entity)
         {
+            FieldOnBaseClassWithDoc = null;
+            FieldGenericOnBaseClassWithDoc = default(TKey);
             return entity;
         }
         #endregion

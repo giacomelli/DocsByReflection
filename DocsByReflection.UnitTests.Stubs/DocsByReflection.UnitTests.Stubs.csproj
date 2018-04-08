@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\Debug\netstandard2.0\DocsByReflection.UnitTests.Stubs.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
 
 </Project>
