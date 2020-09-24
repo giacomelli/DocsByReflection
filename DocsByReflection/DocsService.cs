@@ -46,11 +46,17 @@ namespace DocsByReflection
             // First character [0] of member type is prefix character in the name in the XML.
             var prefix = member.MemberType.ToString()[0];
             ParameterInfo[] parameters = null;
+            var methodBase = member as MethodBase;
             var propertyInfo = member as PropertyInfo;
 
-            if (propertyInfo != null && propertyInfo.CanRead)
+            if (propertyInfo != null && propertyInfo.CanRead) 
             {
-                parameters = propertyInfo.GetGetMethod().GetParameters();
+                methodBase = propertyInfo.GetGetMethod();
+            }
+
+            if (methodBase != null) 
+            {
+                parameters = methodBase.GetParameters();
             }
 
             var strParameters = new List<string>();
