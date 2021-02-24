@@ -8,33 +8,19 @@ namespace DocsByReflection
 	/// </summary>
 	public static class PathHelper
 	{
-		#region Methods
-		/// <summary>
-		/// Gets the assembly document file name from code base.
-		/// </summary>
-		/// <returns>The assembly document file name from code base.</returns>
-		/// <param name="assemblyCodeBase">Assemby code base.</param>
-		public static string GetAssemblyDocFileNameFromCodeBase(string assemblyCodeBase)
+        #region Methods
+        /// <summary>
+        /// Gets the assembly document file name from location.
+        /// </summary>
+        /// <returns>The assembly document file name from location.</returns>
+        /// <param name="assemblyLocation">Assemby location.</param>
+        public static string GetAssemblyDocFileNameFromLocation(string assemblyLocation)
 		{
-			if (string.IsNullOrWhiteSpace (assemblyCodeBase)) {
-				throw new ArgumentNullException ("assemblyCodeBase");
+			if (string.IsNullOrWhiteSpace (assemblyLocation)) {
+				throw new ArgumentNullException (nameof(assemblyLocation));
 			}
 
-			var prefix = "file:///";
-
-			if (assemblyCodeBase.StartsWith (prefix, StringComparison.OrdinalIgnoreCase)) {
-				var filePath = assemblyCodeBase.Substring (prefix.Length);
-
-				if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix) {
-					filePath = "/" + filePath;
-				}
-
-				return Path.ChangeExtension (filePath, ".xml");
-			}
-			else
-			{
-				throw new DocsByReflectionException(string.Format("Could not ascertain assembly filename from assembly code base '{0}'.", assemblyCodeBase));
-			}
+			return Path.ChangeExtension (assemblyLocation, ".xml");
 		}
 		#endregion
 	}
