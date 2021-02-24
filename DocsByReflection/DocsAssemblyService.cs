@@ -77,7 +77,7 @@ namespace DocsByReflection
         /// <returns>The XML document</returns>
         private static XmlDocument GetXmlFromAssemblyNonCached(Assembly assembly)
         {
-            string filePath = PathHelper.GetAssemblyDocFileNameFromCodeBase(assembly.CodeBase);
+            string filePath = PathHelper.GetAssemblyDocFileNameFromLocation(assembly.Location);
 
             try
             {
