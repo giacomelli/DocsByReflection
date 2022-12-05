@@ -26,7 +26,7 @@ namespace DocsByReflection
             Type[] args = type.GetGenericArguments();
             string fullTypeName = string.Empty;
             string typeNamespace = type.Namespace == null ? "" : string.Format("{0}.", type.Namespace);
-            if (type.MemberType == MemberTypes.TypeInfo && (type.IsGenericType || args.Length > 0) && (!type.IsClass || isMethodParameter))
+            if (type.MemberType == MemberTypes.TypeInfo && (type.IsGenericType || args.Length > 0) && (!(type.IsClass || type.IsInterface) || isMethodParameter))
             {
                 //2016-10-06 by Jeffrey, support multiple generic arguments
                 return String.Format(CultureInfo.InvariantCulture,
